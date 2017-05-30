@@ -1,9 +1,7 @@
 var ProfilePage = (function () {
     function ProfilePage() {
         this.contactDetailsTab = element(By.xpath("//h5[2]"));
-        this.emailField = element(By.xpath("(//input[@type='text'])[4]"));
-        this.passwordField = element(By.id("inputPassword3"));
-        this.loginButton = element(By.xpath("//button"));
+        this.emailField = element(By.xpath("//div[2]/div[2]/div/div/div/div/div/div/div/div/div/input"));
     }
 
     ProfilePage.prototype.visitContactDetailsTab = function () {

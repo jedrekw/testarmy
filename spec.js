@@ -31,12 +31,13 @@ var driver = browser.driver;
         });
 
     describe('Profile', function() {
-        fit('should contain user email', function(){
+        it('should contain user email', function(){
             dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.visitContactDetailsTab();
             profile.getCurrentUser().then(function(text) {
                 expect(text).toEqual(USER);
+                //nie pobiera emaila
                 });
         });
     });
