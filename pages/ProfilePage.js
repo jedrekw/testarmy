@@ -1,3 +1,5 @@
+sprintf = require('sprintf').sprintf;
+
 var ProfilePage = (function () {
     function ProfilePage() {
         this.contactDetailsTab = element(By.xpath("//h5[2]"));
@@ -5,10 +7,11 @@ var ProfilePage = (function () {
         this.nameField = element(By.xpath("//div[2]/div/input"));
         this.nameValue = getRandomString();
         this.surnameField = element(By.xpath("//div[2]/input"));
-        this.surnameValue = getRandomString();
-        this.randomGenderButton = element(By.xpath("//div[3]/div/label[%s]"%getRandomInteger(1,3)));
+        this.surnameValue = getRandomString(7);
+        this.randomGenderLocator = sprintf('//div[3]/div/label[%s]', getRandomInteger(1,3));
+        this.randomGenderButton = element(By.xpath(this.randomGenderLocator));
         this.dateField = element(By.xpath("//ng2-datepicker/div/div/input"));
-        this.dateValue = getTodayDate()
+        this.dateValue = (By.css("span.day.today"));
 
     }
 
@@ -20,16 +23,19 @@ var ProfilePage = (function () {
         return this.emailField.getText();
     };
 
+    // this.changeName = function(){
+    //     this.nameField.clear();
+    //     this.nameField.sendKeys(this.nameValue);
+    // };
+
     ProfilePage.prototype.changeName = function () {
-        this.nameField.clear().then(function() {
-            query.sendKeys(this.nameValue);
-        })
+        this.nameField.clear();
+        this.nameField.sendKeys(this.nameValue);
     };
 
     ProfilePage.prototype.changeSurname = function () {
-        this.surnameField.clear().then(function() {
-            query.sendKeys(this.surnameValue);
-        })
+        this.surnameField.clear();
+        this.surnameField.sendKeys(this.surnameValue);
     };
 
     ProfilePage.prototype.clickRandomGender = function () {
@@ -37,12 +43,14 @@ var ProfilePage = (function () {
     };
 
     ProfilePage.prototype.sendDate = function () {
-        this.dateField.clear().then(function() {
-            query.sendKeys(this.dateValue);
-        })
+        this.dateField.click();
+        browser.driver.sleep(2000);
+
+    ProfilePage.prototype.sendDate1 = function () {
+        this.dateValue.click();
     };
 
 return ProfilePage
+};
 });
-
-module.exports = ProfilePage();
+module.exports = ProfilePage;

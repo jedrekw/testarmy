@@ -31,12 +31,14 @@ var driver = browser.driver;
 
         });
         fit('- change personal information should succeed', function(){
+            browser.driver.sleep(1000);
             dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.changeName();
             profile.changeSurname();
             profile.clickRandomGender();
             profile.sendDate();
+            profile.sendDate1();
             expect(profile.nameField.getText()).toEqual(profile.nameValue);
             expect(profile.surnameField.getText()).toEqual(profile.surnameValue);
             expect(profile.dateField.getText()).toEqual(profile.dateValue);

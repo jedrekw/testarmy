@@ -12,8 +12,6 @@ var DashboardPage = (function () {
             this.profileButton.click();
         };
 
-
-
     return DashboardPage;
 
 })();

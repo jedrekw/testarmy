@@ -6,7 +6,7 @@ var SettingsPage = (function () {
         global.USER = "testujpl@o2.pl";
         global.PASSWORD = "Testuj88#";
 
-        getRandomInteger = function(min, max){
+        getRandomInteger = function(min, max) {
             return parseInt(Math.random() * (max - min) + min);
         };
 
