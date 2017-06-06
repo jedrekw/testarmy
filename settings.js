@@ -6,7 +6,7 @@ var SettingsPage = (function () {
         global.USER = "testujpl@o2.pl";
         global.PASSWORD = "Testuj88#";
 
-        getRandomInteger = function(min, max) {
+        SettingsPage.prototype.getRandomInteger = function(min, max) {
             return parseInt(Math.random() * (max - min) + min);
         };
 
@@ -19,7 +19,7 @@ var SettingsPage = (function () {
             return string;
         };
 
-        getTodayDate = function () {
+        SettingsPage.prototype.getTodayDate = function () {
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth() + 1; //January is 0!
@@ -36,7 +36,7 @@ var SettingsPage = (function () {
             return yyyy + '-' + mm + '-' + dd;
         };
 
-        clearFieldAndSendKeys = function (field, value) {
+        SettingsPage.prototype.clearFieldAndSendKeys = function (field, value) {
             field.clear().then(function () {
                 field.sendKeys(value);
             });

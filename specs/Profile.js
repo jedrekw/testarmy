@@ -8,6 +8,7 @@ var DashboardPage = require("./../pages/DashboardPage");
 var dashboard = new DashboardPage();
 var browser = require("protractor").protractor.browser;
 var driver = browser.driver;
+var EC = protractor.ExpectedConditions;
 
     describe('Profile', function() {
         beforeEach(function() {
@@ -18,30 +19,53 @@ var driver = browser.driver;
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
             login_page.login();
+            browser.wait(EC.presenceOf(dashboard.expandDashboardButton), 10000);
         });
 
         it('should contain user email', function(){
             dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.visitContactDetailsTab();
-            profile.getCurrentUser().then(function(text) {
-                expect(text).toEqual(USER);
-                //nie pobiera emaila
+            expect(profile.emailField.getAttribute('value')).toEqual(USER);
             });
 
-        });
-        fit('- change personal information should succeed', function(){
-            browser.driver.sleep(1000);
+        it('- change personal information should succeed', function(){
             dashboard.expandDashboard();
             dashboard.visitProfile();
-            console.log(profile);
+            // console.log(profile);
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.changeName();
             profile.changeSurname();
             profile.clickRandomGender();
             profile.sendDate();
-            profile.sendDate1();
-            expect(profile.nameField.getText()).toEqual(profile.nameValue);
-            expect(profile.surnameField.getText()).toEqual(profile.surnameValue);
-            expect(profile.dateField.getText()).toEqual(profile.dateValue);
+            profile.savePersonalInformationTab();
+            expect(profile.nameField.getAttribute('value')).toEqual(profile.nameValue);
+            expect(profile.surnameField.getAttribute('value')).toEqual(profile.surnameValue);
+            expect(profile.dateField.getAttribute('value')).toEqual(profile.todayDate);
+        });
+
+        it('- change contact details should succeed', function(){
+            dashboard.expandDashboard();
+            dashboard.visitProfile();
+            profile.visitContactDetailsTab();
+            browser.wait(EC.presenceOf(profile.phoneField), 10000);
+            profile.changePhone();
+            profile.changeCity();
+            profile.changeCountry();
+            profile.saveContactDetailsTab();
+            expect(profile.phoneField.getAttribute('value')).toEqual(("'"+profile.phoneValue+"'").slice(1, -1));
+            expect(profile.cityField.getAttribute('value')).toEqual(profile.cityValue);
+        });
+
+        it('- change professional description in experience tab should succeed', function(){
+            dashboard.expandDashboard();
+            dashboard.visitProfile();
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            profile.visitExperienceAndSkillsTab();
+            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            profile.changeProfessionalDescription();
+            var source = driver.getPageSource();
+            expect(source).toContain("Profile has been saved");
+            expect(profile.professionalDescriptionAddedField.getText()).toEqual(profile.professionalDescriptionValue);
         });
     });
