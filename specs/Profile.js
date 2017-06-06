@@ -34,6 +34,7 @@ var driver = browser.driver;
             browser.driver.sleep(1000);
             dashboard.expandDashboard();
             dashboard.visitProfile();
+            console.log(profile);
             profile.changeName();
             profile.changeSurname();
             profile.clickRandomGender();

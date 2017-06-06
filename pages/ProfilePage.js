@@ -11,7 +11,7 @@ var ProfilePage = (function () {
         this.randomGenderLocator = sprintf('//div[3]/div/label[%s]', getRandomInteger(1,3));
         this.randomGenderButton = element(By.xpath(this.randomGenderLocator));
         this.dateField = element(By.xpath("//ng2-datepicker/div/div/input"));
-        this.dateValue = (By.css("span.day.today"));
+        this.dateValue = element(By.css("span.day.today"));
 
     }
 
@@ -22,6 +22,7 @@ var ProfilePage = (function () {
     ProfilePage.prototype.getCurrentUser = function () {
         return this.emailField.getText();
     };
+
 
     // this.changeName = function(){
     //     this.nameField.clear();
@@ -45,12 +46,13 @@ var ProfilePage = (function () {
     ProfilePage.prototype.sendDate = function () {
         this.dateField.click();
         browser.driver.sleep(2000);
+    };
 
     ProfilePage.prototype.sendDate1 = function () {
         this.dateValue.click();
     };
 
-return ProfilePage
-};
-});
+    return ProfilePage;
+
+})();
 module.exports = ProfilePage;
