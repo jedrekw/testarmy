@@ -15,6 +15,8 @@ var EC = protractor.ExpectedConditions;
             browser.ignoreSynchronization = true;
             browser.waitForAngular();
             jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+            // browser.driver.manage().window().setSize(1024, 768);
+            browser.driver.manage().window().maximize();
             login_page.visitLoginPage();
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
@@ -68,4 +70,46 @@ var EC = protractor.ExpectedConditions;
             expect(source).toContain("Profile has been saved");
             expect(profile.professionalDescriptionAddedField.getText()).toEqual(profile.professionalDescriptionValue);
         });
+
+        it('- change languages in experience tab should succeed', function(){
+            dashboard.expandDashboard();
+            dashboard.visitProfile();
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            profile.visitExperienceAndSkillsTab();
+            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            profile.changeLanguages();
+            var source = driver.getPageSource();
+            expect(source).toContain("Profile has been saved");
+            expect(profile.languagesRandomLanguageText).toEqual(profile.languagesSavedLanguageField.getText());
+            expect(profile.languagesRandomProficencyText).toEqual(profile.languagesSavedProficencyField.getText());
+        });
+
+        it('- change certification in experience tab should succeed', function(){
+            dashboard.expandDashboard();
+            dashboard.visitProfile();
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            profile.visitExperienceAndSkillsTab();
+            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            profile.changeCertification();
+            var source = driver.getPageSource();
+            expect(source).toContain("Profile has been saved");
+            expect(profile.certificationNameValue).toEqual(profile.certificationSavedNameField.getText());
+            expect(profile.certificationSavedLicenseNumberField.getText()).toEqual(("'"+profile.certificationLicenseNumberValue+"'").slice(1,-1));
+        });
+
+        fit('- change certification in experience tab should succeed', function(){
+            // dashboard.expandDashboard();
+            dashboard.visitProfile();
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            profile.visitExperienceAndSkillsTab();
+            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            profile.changeProgrammingLanguages();
+            profile.removeProgrammingLanguages();
+            profile.inputProgrammingLanguage();
+            expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedBox.getText());
+            profile.saveProgrammingLanguages();
+            var source = driver.getPageSource();
+            expect(source).toContain("Profile has been saved");
+            expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedField.getText());
+            });
     });
