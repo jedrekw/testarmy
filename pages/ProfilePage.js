@@ -6,7 +6,7 @@ var EC = protractor.ExpectedConditions;
 var ProfilePage = (function () {
     function ProfilePage() {
         this.contactDetailsTab = element(By.xpath("//h5[2]"));
-        this.experienceAndSkillsTab = element(By.xpath("//h5[3]"));
+        this.experienceAndSkillsTab = element(By.xpath("//ba-menu-item[3]/li/a/span"));
         this.emailField = element(By.xpath("//div[2]/div[2]/div/div/div/div/div/div/div/div/div/input"));
         this.nameField = element(By.xpath("//div[2]/div/input"));
         this.nameValue = getRandomString(6);
@@ -60,7 +60,7 @@ var ProfilePage = (function () {
         this.programmingLanguagesAddedBox = element(By.xpath("//div[4]/div/div/div/div/div/div/div[2]/div/div"));
         this.programmingLanguagesSaveButton = element(By.xpath("//div/div/a[2]"));
         this.programmingLanguagesAddedField = element(By.xpath("//div[4]/div/div/div/div/div"));
-        this.programmingLanguagesRemoveButton = element(By.xpath("//div/span"))
+        this.programmingLanguagesRemoveButton = element(By.xpath("//div/span"));
 
     }
 

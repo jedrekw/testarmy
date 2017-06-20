@@ -21,8 +21,7 @@ var EC = protractor.ExpectedConditions;
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
             login_page.login();
-            browser.wait(EC.presenceOf(dashboard.expandDashboardButton), 10000);
-        });
+            });
 
         it('should contain user email', function(){
             dashboard.expandDashboard();
@@ -99,8 +98,9 @@ var EC = protractor.ExpectedConditions;
 
         fit('- change certification in experience tab should succeed', function(){
             // dashboard.expandDashboard();
-            dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            // dashboard.visitProfile();
+            // browser.wait(EC.presenceOf(profile.nameField), 10000);
+            console.log(profile);
             profile.visitExperienceAndSkillsTab();
             browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeProgrammingLanguages();
