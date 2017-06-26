@@ -5,8 +5,9 @@ var EC = protractor.ExpectedConditions;
 
 var ProfilePage = (function () {
     function ProfilePage() {
+        this.testArmyLogo = element(By.xpath("//img"));
         this.contactDetailsTab = element(By.xpath("//h5[2]"));
-        this.experienceAndSkillsTab = element(By.xpath("//ba-menu-item[3]/li/a/span"));
+        this.experienceAndSkillsTab = element(By.xpath("//h5[3]"));
         this.emailField = element(By.xpath("//div[2]/div[2]/div/div/div/div/div/div/div/div/div/input"));
         this.nameField = element(By.xpath("//div[2]/div/input"));
         this.nameValue = getRandomString(6);
@@ -25,7 +26,7 @@ var ProfilePage = (function () {
         this.countryDropdown = element(By.xpath("//select"));
         this.countryOption = element(By.xpath(sprintf("//option[%s]", settings.getRandomInteger(1, 199))));
         this.saveContactDetailsTabButton = element(By.xpath("//div[2]/div/div/div/div/div[2]/button"));
-        this.professionalDescriptionEditButton = element(By.xpath("//div[2]/a"));
+        this.professionalDescriptionEditButton = element(By.xpath("//a[contains(text(),'Edit description')]"));
         this.professionalDescriptionField = element(By.xpath("//textarea"));
         this.professionalDescriptionValue = getRandomString(10)+" "+getRandomString(12)+" "+getRandomString(6);
         this.professionalDescriptionSaveButton = element(By.xpath("//div/div/a[2]"));
@@ -60,7 +61,7 @@ var ProfilePage = (function () {
         this.programmingLanguagesAddedBox = element(By.xpath("//div[4]/div/div/div/div/div/div/div[2]/div/div"));
         this.programmingLanguagesSaveButton = element(By.xpath("//div/div/a[2]"));
         this.programmingLanguagesAddedField = element(By.xpath("//div[4]/div/div/div/div/div"));
-        this.programmingLanguagesRemoveButton = element(By.xpath("//div/span"));
+        this.programmingLanguagesRemoveButton = element(By.css("html body app main.ng2 pages div.al-main div.al-content.col-md-10.offset-md-1 ng-component form.ng-untouched.ng-pristine.ng-valid div.profile-box-wrapper div.row div.col-md-12.profile-box.visiblity div.row div.col-md-12 div.sfield.card div.sfield-inner div.sfield-forms div.row div.form-group.col-md-12 div.confirmed-languages div div.lang-cloud.remove span"));
 
     }
 
@@ -159,26 +160,39 @@ var ProfilePage = (function () {
         };
 
     ProfilePage.prototype.removeProgrammingLanguages = function () {
-        while (true)
-        {
+    //     browser.findElement(By.xpath("//div/span"));
+    //     // this.programmingLanguagesRemoveButton.click();
+    // };
+    //     while (true) {
+    //         try {
+    //             browser.findElement(By.css("html body app main.ng2 pages div.al-main div.al-content.col-md-10.offset-md-1 ng-component form.ng-untouched.ng-pristine.ng-valid div.profile-box-wrapper div.row div.col-md-12.profile-box.visiblity div.row div.col-md-12 div.sfield.card div.sfield-inner div.sfield-forms div.row div.form-group.col-md-12 div.confirmed-languages div div.lang-cloud.remove span"));
+    //             this.programmingLanguagesRemoveButton.click();
+    //         }
+    //         catch (NoSuchElementError) {
+    //             break;
+    //         }
+    //     }
+    // };
+        i=0;
+        while (i < 3) {
+            browser.findElement(By.css("//div/span")).then(null, function (err) {
+                if (err.name == "NoSuchElementError") {
+                    i=11;
+                }
             this.programmingLanguagesRemoveButton.click();
-            try {
-                browser.findElement(this.programmingLanguagesRemoveButton);
-            }
-            catch(NoSuchElementError){
-                break
-            }
+            i++;
+            });
         }
     };
-
-    ProfilePage.prototype.inputProgrammingLanguage = function () {
-        settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
-        this.programmingLanguagesAddButton.click();
-    };
-
-    ProfilePage.prototype.saveProgrammingLanguages = function () {
-        this.programmingLanguagesSaveButton.click();
-    };
+    //
+    // ProfilePage.prototype.inputProgrammingLanguage = function () {
+    //     settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
+    //     this.programmingLanguagesAddButton.click();
+    // };
+    //
+    // ProfilePage.prototype.saveProgrammingLanguages = function () {
+    //     this.programmingLanguagesSaveButton.click();
+    // };
 
     return ProfilePage;
 

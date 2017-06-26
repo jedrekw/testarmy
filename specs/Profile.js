@@ -15,12 +15,13 @@ var EC = protractor.ExpectedConditions;
             browser.ignoreSynchronization = true;
             browser.waitForAngular();
             jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-            // browser.driver.manage().window().setSize(1024, 768);
-            browser.driver.manage().window().maximize();
+            browser.driver.manage().window().setSize(1024, 768);
+            // browser.driver.manage().window().maximize();
             login_page.visitLoginPage();
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
             login_page.login();
+            browser.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
             });
 
         it('should contain user email', function(){
@@ -33,7 +34,6 @@ var EC = protractor.ExpectedConditions;
         it('- change personal information should succeed', function(){
             dashboard.expandDashboard();
             dashboard.visitProfile();
-            // console.log(profile);
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.changeName();
             profile.changeSurname();
@@ -96,20 +96,18 @@ var EC = protractor.ExpectedConditions;
             expect(profile.certificationSavedLicenseNumberField.getText()).toEqual(("'"+profile.certificationLicenseNumberValue+"'").slice(1,-1));
         });
 
-        fit('- change certification in experience tab should succeed', function(){
-            // dashboard.expandDashboard();
-            // dashboard.visitProfile();
-            // browser.wait(EC.presenceOf(profile.nameField), 10000);
-            console.log(profile);
+        fit('- change programming languages in experience tab should succeed', function(){
+            dashboard.visitProfile();
+            browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
             browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeProgrammingLanguages();
             profile.removeProgrammingLanguages();
-            profile.inputProgrammingLanguage();
-            expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedBox.getText());
-            profile.saveProgrammingLanguages();
-            var source = driver.getPageSource();
-            expect(source).toContain("Profile has been saved");
-            expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedField.getText());
+            // profile.inputProgrammingLanguage();
+            // expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedBox.getText());
+            // profile.saveProgrammingLanguages();
+            // var source = driver.getPageSource();
+            // expect(source).toContain("Profile has been saved");
+            // expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedField.getText());
             });
     });
