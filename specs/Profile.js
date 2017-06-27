@@ -96,12 +96,13 @@ var EC = protractor.ExpectedConditions;
             expect(profile.certificationSavedLicenseNumberField.getText()).toEqual(("'"+profile.certificationLicenseNumberValue+"'").slice(1,-1));
         });
 
-        fit('- change programming languages in experience tab should succeed', function(){
+        it('- change programming languages in experience tab should succeed', function(){
             dashboard.visitProfile();
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
             browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeProgrammingLanguages();
+            browser.driver.sleep(1000);
             profile.removeProgrammingLanguages();
             // profile.inputProgrammingLanguage();
             // expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedBox.getText());

@@ -61,8 +61,7 @@ var ProfilePage = (function () {
         this.programmingLanguagesAddedBox = element(By.xpath("//div[4]/div/div/div/div/div/div/div[2]/div/div"));
         this.programmingLanguagesSaveButton = element(By.xpath("//div/div/a[2]"));
         this.programmingLanguagesAddedField = element(By.xpath("//div[4]/div/div/div/div/div"));
-        this.programmingLanguagesRemoveButton = element(By.css("html body app main.ng2 pages div.al-main div.al-content.col-md-10.offset-md-1 ng-component form.ng-untouched.ng-pristine.ng-valid div.profile-box-wrapper div.row div.col-md-12.profile-box.visiblity div.row div.col-md-12 div.sfield.card div.sfield-inner div.sfield-forms div.row div.form-group.col-md-12 div.confirmed-languages div div.lang-cloud.remove span"));
-
+        this.programmingLanguagesRemoveButton = element(By.xpath("//div/span"));
     }
 
     ProfilePage.prototype.visitContactDetailsTab = function () {
@@ -156,12 +155,12 @@ var ProfilePage = (function () {
     };
 
     ProfilePage.prototype.changeProgrammingLanguages = function () {
-        this.programmingLanguagesEditButton.click();
+                this.programmingLanguagesEditButton.click();
         };
 
-    ProfilePage.prototype.removeProgrammingLanguages = function () {
+    // ProfilePage.prototype.removeProgrammingLanguages = function () {
     //     browser.findElement(By.xpath("//div/span"));
-    //     // this.programmingLanguagesRemoveButton.click();
+    //     this.programmingLanguagesRemoveButton.click();
     // };
     //     while (true) {
     //         try {
@@ -173,18 +172,31 @@ var ProfilePage = (function () {
     //         }
     //     }
     // };
-        i=0;
-        while (i < 3) {
-            browser.findElement(By.css("//div/span")).then(null, function (err) {
-                if (err.name == "NoSuchElementError") {
-                    i=11;
-                }
-            this.programmingLanguagesRemoveButton.click();
-            i++;
-            });
-        }
+    //     function cond() {
+    //         browser.findElement(By.xpath("//div/span")).then(null, function (err) {
+    //             if (err.name == "NoSuchElementError") {
+    //                 return true;
+    //             }
+    //             else {
+    //                 return false;
+    //             }
+    //         });
+    //     }
+    //     var promiseWhile = Promise.method(function(condition, action)
+    //         {
+    //         if (cond()) {return;}
+    //         else { return this.programmingLanguagesRemoveButton.click().then(promiseWhile.bind(null, condition, action));}
+    //     })
+    // };
+
+
+    ProfilePage.prototype.removeProgrammingLanguages = function removeProgrammingLanguages() {
+        return browser.findElement(By.xpath("//div/span")).then(function() {
+            this.programmingLanguagesRemoveBttn = element(By.css("div.lang-cloud.remove > span"));
+            return this.programmingLanguagesRemoveBttn.click().then(removeProgrammingLanguages)
+        })
     };
-    //
+
     // ProfilePage.prototype.inputProgrammingLanguage = function () {
     //     settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
     //     this.programmingLanguagesAddButton.click();
