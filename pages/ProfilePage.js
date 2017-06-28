@@ -191,9 +191,8 @@ var ProfilePage = (function () {
 
 
     ProfilePage.prototype.removeProgrammingLanguages = function removeProgrammingLanguages() {
-        return browser.findElement(By.xpath("//div/span")).then(function() {
-            this.programmingLanguagesRemoveBttn = element(By.css("div.lang-cloud.remove > span"));
-            return this.programmingLanguagesRemoveBttn.click().then(removeProgrammingLanguages)
+        return element(By.css("div.lang-cloud.remove > span")).isPresent().then(function() {
+            return element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrammingLanguages)
         })
     };
 
