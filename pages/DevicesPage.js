@@ -7,14 +7,14 @@ var DevicesPage = (function () {
     function DevicesPage() {
         this.addDeviceButton = element(By.id("add-device"));
         this.deviceTypeDropdown = element(By.xpath("//select"));
-        this.deviceTypeOptionSmartphone = element(By.xpath("//option[1]"));
-        this.deviceTypeOptionTablet = element(By.xpath("//option[2]"));
-        this.deviceTypeOptionSmartTV = element(By.xpath("//option[3]"));
-        this.deviceTypeOptionComputer = element(By.xpath("//option[4]"));
-        this.deviceTypeOptionConsole = element(By.xpath("//option[5]"));
-        this.deviceTypeOptionVR = element(By.xpath("//option[6]"));
+        this.deviceTypeOptionSmartphone = element(By.xpath("//option[2]"));
+        this.deviceTypeOptionTablet = element(By.xpath("//option[3]"));
+        this.deviceTypeOptionSmartTV = element(By.xpath("//option[4]"));
+        this.deviceTypeOptionComputer = element(By.xpath("//option[5]"));
+        this.deviceTypeOptionConsole = element(By.xpath("//option[6]"));
+        this.deviceTypeOptionVR = element(By.xpath("//option[7]"));
         this.searchDeviceDatabaseField = element(By.xpath("//input"));
-        this.brandField = element(By.xpath("//input"));
+        this.brandField = element(By.xpath("//div[3]/div/input"));
         this.brandValue = getRandomString(8);
         this.modelField = element(By.xpath("//div[2]/input"));
         this.modelValue = getRandomString(9);
@@ -30,6 +30,19 @@ var DevicesPage = (function () {
         this.addedDeviceOSversionField = element(By.xpath("//td[5]/ng2-smart-table-cell/table-cell-view-mode/div/div"));
         this.removeAddedDeviceButton = element(By.xpath("//td[6]/a"));
     }
+
+    DevicesPage.prototype.removeAllDevices = function removeDevices() {
+        browser.findElement(By.xpath("//td[6]/a")).then(function (err) {
+            element(By.xpath("//td[6]/a")).click();
+            driver.browser.switchTo().alert().accept().then(removeDevices);
+        }, function (err) {
+            if (err) {
+                console.log(err.name);
+            } else {
+                promise.rejected();
+            }
+        })
+    };
 
     DevicesPage.prototype.addDevice = function () {
         this.addDeviceButton.click();

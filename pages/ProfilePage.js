@@ -160,7 +160,9 @@ var ProfilePage = (function () {
 
     // ProfilePage.prototype.removeProgrammingLanguages = function () {
     //     browser.findElement(By.xpath("//div/span"));
-    //     this.programmingLanguagesRemoveButton.click();
+    //     expect(element(By.css("div.lang-cloud.remove > span")).isPresent());
+    //     // this.programmingLanguagesRemoveButton.click();
+    //     element(By.xpath("//div/span")).click()
     // };
     //     while (true) {
     //         try {
@@ -190,20 +192,26 @@ var ProfilePage = (function () {
     // };
 
 
-    ProfilePage.prototype.removeProgrammingLanguages = function removeProgrammingLanguages() {
-        return element(By.css("div.lang-cloud.remove > span")).isPresent().then(function() {
-            return element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrammingLanguages)
+    ProfilePage.prototype.removeProgrammingLanguages = function removeProgrLanguages() {
+        browser.findElement(By.xpath("//div/span")).then(function (err) {
+            element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrLanguages);
+        }, function (err) {
+            if (err) {
+                console.log(err.name);
+            } else {
+                promise.rejected();
+            }
         })
     };
 
-    // ProfilePage.prototype.inputProgrammingLanguage = function () {
-    //     settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
-    //     this.programmingLanguagesAddButton.click();
-    // };
-    //
-    // ProfilePage.prototype.saveProgrammingLanguages = function () {
-    //     this.programmingLanguagesSaveButton.click();
-    // };
+    ProfilePage.prototype.inputProgrammingLanguage = function () {
+        settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
+        this.programmingLanguagesAddButton.click();
+    };
+
+    ProfilePage.prototype.saveProgrammingLanguages = function () {
+        this.programmingLanguagesSaveButton.click();
+    };
 
     return ProfilePage;
 
