@@ -25,14 +25,14 @@ var EC = protractor.ExpectedConditions;
             });
 
         it('should contain user email', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.visitContactDetailsTab();
             expect(profile.emailField.getAttribute('value')).toEqual(USER);
             });
 
         it('- change personal information should succeed', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.changeName();
@@ -46,7 +46,7 @@ var EC = protractor.ExpectedConditions;
         });
 
         it('- change contact details should succeed', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.visitContactDetailsTab();
             browser.wait(EC.presenceOf(profile.phoneField), 10000);
@@ -59,7 +59,7 @@ var EC = protractor.ExpectedConditions;
         });
 
         it('- change professional description in experience tab should succeed', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
@@ -71,7 +71,7 @@ var EC = protractor.ExpectedConditions;
         });
 
         it('- change languages in experience tab should succeed', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
@@ -84,7 +84,7 @@ var EC = protractor.ExpectedConditions;
         });
 
         it('- change certification in experience tab should succeed', function(){
-            dashboard.expandDashboard();
+            // dashboard.expandDashboard();
             dashboard.visitProfile();
             browser.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
