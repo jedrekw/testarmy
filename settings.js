@@ -1,10 +1,10 @@
 var SettingsPage = (function () {
 
     function SettingsPage() {
-        global.URL = "http://192.168.4.130/";
+        global.URL = "https://staging.testarmy.com/";
 
         global.USER = "testujpl@o2.pl";
-        global.PASSWORD = "Testuj88#";
+        global.PASSWORD = "Testuj88%$#@!";
 
         SettingsPage.prototype.getRandomInteger = function(min, max) {
             return parseInt(Math.random() * (max - min) + min);
