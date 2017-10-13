@@ -24,6 +24,7 @@ var EC = protractor.ExpectedConditions;
             browser.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
             });
 
+
         it('- add smartphone should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitDevices();
