@@ -4,7 +4,7 @@ var DashboardPage = (function () {
         this.profileButton = element(By.xpath("//ul/li/a"));
         this.logoutButton = element(By.xpath("//li[2]/a"));
         this.expandDashboardButton = element(By.css("a.collapse-menu-link.ion-navicon"));
-        this.devicesButton = element(By.xpath("//ba-menu-item[6]/li/a/span"));
+        this.devicesButton = element(By.xpath("//ba-menu-item[5]/li/a/span"));
     }
 
         DashboardPage.prototype.expandDashboard = function () {

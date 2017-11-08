@@ -6,6 +6,7 @@
     "jasmine-node": "^1.14.5",
     "jasminewd": "^1.1.0",
     "protractor": "^5.1.2",
+    "protractor-pretty-html-reporter": "0.0.15",
     "sprintf": "^0.1.5"
   }
 }

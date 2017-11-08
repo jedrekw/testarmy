@@ -127,7 +127,7 @@ var ProfilePage = (function () {
         this.languagesRandomProficencyOption.click();
         this.languagesSaveButton.click();
     };
-    
+
 
     ProfilePage.prototype.changeCertification = function () {
         this.certificationEditButton.click();

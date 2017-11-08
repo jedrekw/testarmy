@@ -1,7 +1,6 @@
 var SettingsPage = (function () {
 
     function SettingsPage() {
-        global.URL = "https://staging.testarmy.com/";
 
         global.USER = "testujpl@o2.pl";
         global.PASSWORD = "Testuj88%$#@!";
