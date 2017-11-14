@@ -16,26 +16,26 @@ var DevicesPage = (function () {
         this.searchDeviceDatabaseField = element(By.xpath("//input"));
         this.searchDeviceDatabaseValueNokia = "Nokia";
         this.searchDeviceDatabaseFirstResult = element(By.xpath("//div/div/div/div/div/div"));
-        this.searchDeviceDatabaseSecondResult = element(By.xpath("//div[2]/div/div/completer-list-item/span/span"));
+        this.searchDeviceDatabaseSecondResult = element(By.xpath("//div[2]/div/div"));
         this.brandField = element(By.xpath("//div[3]/input"));
         this.brandFieldSmartTv = element(By.xpath("//div[3]/input"));
         this.brandFieldVR = element(By.xpath("//div[3]/input"));
         this.brandValue = getRandomString(8);
         this.brandDropdownConsole = element(By.xpath("//div/div/select"));
-        this.brandDropdownConsoleOption = element(By.xpath(sprintf("/html/body/app/main/pages/div/div/add-devices/div/div/ba-card/div/div/div/div/form/div[2]/div[1]/div/select/option[%s]", settings.getRandomInteger(2, 4))));
+        this.brandDropdownConsoleOption = element(By.xpath(sprintf("/html/body/nga-app/main/nga-pages/div/div/nga-add-devices/div/div/ba-card/div/div/div/div/form/div[3]/div/select/option[%s]", settings.getRandomInteger(2, 4))));
         this.modelField = element(By.xpath("//div[4]/input"));
         this.modelValue = getRandomString(9);
-        this.modelDropdownConsole = element(By.xpath("//div[2]/div/select"));
-        this.modelDropdownConsoleOption = element(By.xpath(sprintf("/html/body/app/main/pages/div/div/add-devices/div/div/ba-card/div/div/div/div/form/div[2]/div[2]/div/select/option[%s]", settings.getRandomInteger(2, 4))));
+        this.modelDropdownConsole = element(By.xpath("//div[4]/div/select"));
+        this.modelDropdownConsoleOption = element(By.xpath(sprintf("/html/body/nga-app/main/nga-pages/div/div/nga-add-devices/div/div/ba-card/div/div/div/div/form/div[4]/div/select/option[%s]", settings.getRandomInteger(2, 4))));
         this.OSdropdown = element(By.xpath("//div[5]/select"));
-        this.OSdropdownOption = element(By.xpath(sprintf("/html/body/app/main/pages/div/div/add-devices/div/div/ba-card/div/div/div/div/form/div[4]/select/option[%s]", settings.getRandomInteger(2, 6))));
+        this.OSdropdownOption = element(By.xpath(sprintf("/html/body/nga-app/main/nga-pages/div/div/nga-add-devices/div/div/ba-card/div/div/div/div/form/div[5]/select/option[%s]", settings.getRandomInteger(2, 6))));
         this.OSdropdownSmartTV = element(By.xpath("//div[5]/select"));
-        this.OSdropdownOptionSmartTV = element(By.xpath("/html/body/app/main/pages/div/div/add-devices/div/div/ba-card/div/div/div/div/form/div[3]/select/option[2]"));
+        this.OSdropdownOptionSmartTV = element(By.xpath("/html/body/nga-app/main/nga-pages/div/div/nga-add-devices/div/div/ba-card/div/div/div/div/form/div[5]/select/option[2]"));
         this.OSdropdownComputer = element(By.xpath("//div[3]/select"));
-        this.OSdropdownOptionComputer = element(By.xpath(sprintf("/html/body/app/main/pages/div/div/add-devices/div/div/ba-card/div/div/div/div/form/div[3]/select/option[%s]", settings.getRandomInteger(2, 3))));
-        this.OSversionField = element(By.xpath("//div[5]/input"));
-        this.OSversionFieldSmartTV = element(By.xpath("//div[4]/input"));
-        this.OSversionFieldComputer = element(By.xpath("//input"));
+        this.OSdropdownOptionComputer = element(By.xpath(sprintf("/html/body/nga-app/main/nga-pages/div/div/nga-add-devices/div/div/ba-card/div/div/div/div/form/div[3]/select/option[%s]", settings.getRandomInteger(2, 3))));
+        this.OSversionField = element(By.xpath("//div[6]/input"));
+        this.OSversionFieldSmartTV = element(By.xpath("//div[6]/input"));
+        this.OSversionFieldComputer = element(By.xpath("//div[4]/input"));
         this.OSversionValue = settings.getRandomInteger(1, 9)+"."+settings.getRandomInteger(1,20);
         this.addDeviceSubmit = element(By.xpath("//button"));
         this.addedDeviceTypeField = element(By.xpath("//table-cell-view-mode/div/div"));
@@ -43,13 +43,13 @@ var DevicesPage = (function () {
         this.addedDeviceModelField = element(By.xpath("//td[3]/ng2-smart-table-cell/table-cell-view-mode/div/div"));
         this.addedDeviceOSField = element(By.xpath("//td[4]/ng2-smart-table-cell/table-cell-view-mode/div/div"));
         this.addedDeviceOSversionField = element(By.xpath("//td[5]/ng2-smart-table-cell/table-cell-view-mode/div/div"));
-        this.removeAddedDeviceButton = element(By.xpath("//td[6]/a"));
+        this.removeAddedDeviceButton = element(By.xpath("//ng2-st-tbody-edit-delete/a[2]"));
         this.noDevicesAddedField = element(By.xpath("//td"));
     }
 
     DevicesPage.prototype.removeAllDevices = function removeDevices() {
-        browser.findElement(By.xpath("//td[6]/a")).then(function (err) {
-            element(By.xpath("//td[6]/a")).click();
+        browser.findElement(By.xpath("//ng2-st-tbody-edit-delete/a[2]")).then(function (err) {
+            element(By.xpath("//ng2-st-tbody-edit-delete/a[2]")).click();
             browser.switchTo().alert().accept().then(removeDevices);
         }, function (err) {
             if (err) {
@@ -99,7 +99,7 @@ var DevicesPage = (function () {
     };
 
     DevicesPage.prototype.clickFirstResultSearchSmartphone = function () {
-        settings.clearFieldAndSendKeys(this.searchDeviceDatabaseField, this.searchDeviceDatabaseValueNokia)
+        this.searchDeviceDatabaseFirstResult.click();
     };
 
     DevicesPage.prototype.fillBrand = function () {

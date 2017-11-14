@@ -6,7 +6,7 @@ var EC = protractor.ExpectedConditions;
 var ProfilePage = (function () {
     function ProfilePage() {
         this.testArmyLogo = element(By.xpath("//img"));
-        this.contactDetailsTab = element(By.xpath("//h5[2]"));
+        this.contactDetailsTab = element(By.xpath("//li/ul/ba-menu-item[2]/li/a/span"));
         this.experienceAndSkillsTab = element(By.xpath("//h5[3]"));
         this.emailField = element(By.xpath("//div[2]/div[2]/div/div/div/div/div/div/div/div/div/input"));
         this.nameField = element(By.xpath("//div[2]/div/input"));
@@ -33,10 +33,10 @@ var ProfilePage = (function () {
         this.professionalDescriptionAddedField = element(By.css("div.sfield-content"));
         this.languagesEditButton = element(By.xpath("//div[2]/div/div/div[2]/a"));
         this.languagesLanguageDropdown = element(By.xpath("//div[3]/div/div[2]/div/div/div/div/div/div/div/div/div/select"));
-        this.languagesRandomLanguageLocator = sprintf('/html/body/app/main/pages/div/div/ng-component/form/div[2]/div[3]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[1]/select/option[%s]', settings.getRandomInteger(2, 6));
+        this.languagesRandomLanguageLocator = sprintf('//div[3]/div/div[2]/div/div/div/div/div/div/div/div/div/select/option[%s]', settings.getRandomInteger(2, 6));
         this.languagesRandomLanguageOption = element(By.xpath(this.languagesRandomLanguageLocator));
         this.languagesProficencyDropdown = element(By.xpath("//div[3]/div/div[2]/div/div/div/div/div/div/div/div/div[2]/select"));
-        this.languagesRandomProficencyLocator = sprintf('/html/body/app/main/pages/div/div/ng-component/form/div[2]/div[3]/div/div[2]/div/div/div/div/div[1]/div/div/div/div[2]/select/option[%s]', settings.getRandomInteger(2, 5));
+        this.languagesRandomProficencyLocator = sprintf('//div[3]/div/div[2]/div/div/div/div/div/div/div/div/div[2]/select/option[%s]', settings.getRandomInteger(2, 5));
         this.languagesRandomProficencyOption = element(By.xpath(this.languagesRandomProficencyLocator));
         this.languagesSaveButton = element(By.xpath("//div/div/a[2]"));
         this.languagesSavedLanguageField = element(By.xpath("//div[3]/div/div[2]/div/div/div/div/div/div/div"));
@@ -49,7 +49,8 @@ var ProfilePage = (function () {
         this.certificationDateField = element(By.xpath("//div[3]/div/div/ng2-datepicker/div/div/input"));
         this.certificationDateEndField = element(By.xpath("//div[2]/ng2-datepicker/div/div/input"));
         this.certificationDateValue = element(By.className("day today"));
-        this.certificationDateEndValue = element(By.xpath("//button[2]"));
+        this.certificationDateEndNextMonthButton = element(By.xpath("//i[2]"));
+        this.certificationDateEndValue = element(By.xpath("//span[19]"));
         this.certificationDoesNotExpireCheckbox = element(By.xpath("//div[4]/input"));
         this.certificationSaveButton = element(By.xpath("//div[3]/div/div/div/div/a[2]"));
         this.certificationSavedNameField = element(By.xpath("//div[3]/div/div[3]/div/div/div/div/div/div/div"));
@@ -57,7 +58,7 @@ var ProfilePage = (function () {
         this.programmingLanguagesEditButton = element(By.xpath("//div[4]/div/div/div[2]/a"));
         this.programmingLanguagesNameField = element(By.xpath("//ng2-completer/div/input"));
         this.programmingLanguagesNameValue = getRandomString(7);
-        this.programmingLanguagesAddButton = element(By.xpath("//div[4]/div/div/div/div/div/div/div/button"));
+        this.programmingLanguagesAddButton = element(By.xpath("//div/div/div/div/div/div/div/div[2]/button"));
         this.programmingLanguagesAddedBox = element(By.xpath("//div[4]/div/div/div/div/div/div/div[2]/div/div"));
         this.programmingLanguagesSaveButton = element(By.xpath("//div/div/a[2]"));
         this.programmingLanguagesAddedField = element(By.xpath("//div[4]/div/div/div/div/div"));
@@ -142,6 +143,7 @@ var ProfilePage = (function () {
         //     }
         // });
         this.certificationDateEndField.click();
+        this.certificationDateEndNextMonthButton.click();
         this.certificationDateEndValue.click();
         // try{
         //     this.certificationDateEndField.click();
