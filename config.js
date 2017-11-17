@@ -5,7 +5,7 @@ exports.config = {
     capabilities: {
         'browserName': 'chrome',
         'chromeOptions': {
-            'args': ['no-sandbox']
+            'args': ['no-sandbox'],
     baseUrl: "https://mytestarmy:!%40%23TestArmy@staging.testarmy.com",
     onPrepare: function() {
         jasmine.getEnv().addReporter(prettyReporter);
