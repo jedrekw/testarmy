@@ -7,7 +7,6 @@ var login_page = new LoginPage();
 var DashboardPage = require("./../pages/DashboardPage");
 var dashboard = new DashboardPage();
 var browser = require("protractor").protractor.browser;
-var driver = browser.driver;
 var EC = protractor.ExpectedConditions;
 
     describe('Login', function() {
@@ -23,13 +22,13 @@ var EC = protractor.ExpectedConditions;
         });
 
         it('should login to account', function(){
-            var source = driver.getPageSource();
+            var source = browser.driver.getPageSource();
             expect(source).toContain("assets/img/logo.svg");
         });
 
         it('- logout should succeed', function(){
             dashboard.logout();
-            // var source = driver.getPageSource();
+            // var source = browser.driver.getPageSource();
             // expect(source).toContain("You are logged out");
             // expect(source).toContain("You will be redirected to login page");
             browser.wait(EC.presenceOf(login_page.loginButton), 15000);
