@@ -225,7 +225,7 @@ var EC = protractor.ExpectedConditions;
             devices.selectDeviceTypeSmartphone();
             devices.fillSearchSmartphoneFieldNokia();
             browser.waitForAngular();
-            browser.driver.wait(EC.elementToBeClickable(devices.searchDeviceDatabaseSecondResult), 10000);
+            browser.driver.wait(EC.elementToBeClickable(devices.searchDeviceDatabaseSecondResult), 15000);
             browser.driver.wait(EC.textToBePresentInElement(devices.searchDeviceDatabaseFirstResult, "Nokia"), 10000);
             devices.clickFirstResultSearchSmartphone();
             expect(devices.brandField.getAttribute('value')).toContain("Nokia");
