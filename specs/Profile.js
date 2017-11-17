@@ -70,7 +70,7 @@ var EC = protractor.ExpectedConditions;
             expect(profile.professionalDescriptionAddedField.getText()).toEqual(profile.professionalDescriptionValue);
         });
 
-        fit('- change languages in experience tab should succeed', function(){
+        it('- change languages in experience tab should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitProfile();
             browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
