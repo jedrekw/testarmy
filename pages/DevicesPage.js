@@ -164,7 +164,7 @@ var DevicesPage = (function () {
     };
 
     DevicesPage.prototype.removeAddedDevice = function () {
-        this.removeAddedDeviceButton.click();
+        browser.executeScript("arguments[0].click();", this.removeAddedDeviceButton.getWebElement());
         browser.switchTo().alert().accept();
     };
 

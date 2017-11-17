@@ -78,7 +78,7 @@ var EC = protractor.ExpectedConditions;
             browser.driver.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeLanguages();
             browser.driver.sleep(1000);
-            var source = dbrowser.driver.getPageSource();
+            var source = browser.driver.getPageSource();
             expect(source).toContain("Profile has been saved");
             expect(profile.languagesRandomLanguageText).toEqual(profile.languagesSavedLanguageField.getText());
             expect(profile.languagesRandomProficencyText).toEqual(profile.languagesSavedProficencyField.getText());
