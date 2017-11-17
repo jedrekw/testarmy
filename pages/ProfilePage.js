@@ -87,7 +87,7 @@ var ProfilePage = (function () {
 
     ProfilePage.prototype.sendDate = function () {
         this.dateField.click();
-        browser.wait(EC.presenceOf(this.dateValue), 10000);
+        browser.driver.wait(EC.presenceOf(this.dateValue), 10000);
         this.dateValue.click();
     };
 

@@ -20,7 +20,7 @@ var EC = protractor.ExpectedConditions;
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
             login_page.login();
-            browser.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
+            browser.driver.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
             });
 
         it('should contain user email', function(){
@@ -33,7 +33,7 @@ var EC = protractor.ExpectedConditions;
         it('- change personal information should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
             profile.changeName();
             profile.changeSurname();
             profile.clickRandomGender();
@@ -48,7 +48,7 @@ var EC = protractor.ExpectedConditions;
             // dashboard.expandDashboard();
             dashboard.visitProfile();
             profile.visitContactDetailsTab();
-            browser.wait(EC.presenceOf(profile.phoneField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.phoneField), 10000);
             profile.changePhone();
             profile.changeCity();
             profile.changeCountry();
@@ -60,9 +60,9 @@ var EC = protractor.ExpectedConditions;
         it('- change professional description in experience tab should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
-            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            browser.driver.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeProfessionalDescription();
             browser.driver.sleep(1000);
             var source = browser.driver.getPageSource();
@@ -73,9 +73,9 @@ var EC = protractor.ExpectedConditions;
         it('- change languages in experience tab should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
-            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            browser.driver.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeLanguages();
             browser.driver.sleep(1000);
             var source = dbrowser.driver.getPageSource();
@@ -87,9 +87,9 @@ var EC = protractor.ExpectedConditions;
         it('- change certification in experience tab should succeed', function(){
             // dashboard.expandDashboard();
             dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
-            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            browser.driver.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeCertification();
             browser.driver.sleep(1000);
             var source = browser.driver.getPageSource();
@@ -100,9 +100,9 @@ var EC = protractor.ExpectedConditions;
 
         it('- change programming languages in experience tab should succeed', function(){
             dashboard.visitProfile();
-            browser.wait(EC.presenceOf(profile.nameField), 10000);
+            browser.driver.wait(EC.presenceOf(profile.nameField), 10000);
             profile.visitExperienceAndSkillsTab();
-            browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+            browser.driver.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
             profile.changeProgrammingLanguages();
             browser.driver.sleep(1000);
             profile.removeProgrammingLanguages();

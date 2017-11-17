@@ -18,7 +18,7 @@ var EC = protractor.ExpectedConditions;
             login_page.fillEmail(USER);
             login_page.fillPassword(PASSWORD);
             login_page.login();
-            browser.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
+            browser.driver.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
         });
 
         it('should login to account', function(){
@@ -31,7 +31,7 @@ var EC = protractor.ExpectedConditions;
             // var source = browser.driver.getPageSource();
             // expect(source).toContain("You are logged out");
             // expect(source).toContain("You will be redirected to login page");
-            browser.wait(EC.presenceOf(login_page.loginButton), 15000);
+            browser.driver.wait(EC.presenceOf(login_page.loginButton), 15000);
         });
 
 });
