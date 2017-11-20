@@ -14,10 +14,9 @@ exports.config = {
         return new Promise(function (){
             var transporter = nodemailer.createTransport({
                 host: 'smtp.gmail.com',
-                port: 465,
                 secure: true, // use SSL
                 auth: {
-                    user: 'maildoklientow%40gmail.com',
+                    user: 'maildoklientow@gmail.com',
                     pass: 'useme1988'
                 }
             });
