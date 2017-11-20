@@ -24,7 +24,7 @@ exports.config = {
                 from: '"Testarmy" <maildoklientow@gmail.com>',
                 to: 'maildoklientow@gmail.com',
                 subject: 'Testarmy Raport Testy Automatyczne',
-                html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="6">Cześć!</font><br><font size="5">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></font></p>'
+                html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="5">Cześć!</font><br><br><font size="4">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="https://ci.testuj.pl/job/Testarmy/ws/results/report.html">Otwórz raport</a></font></p>'
             };
             transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
