@@ -28,10 +28,6 @@ exports.config = {
             html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="6">Cześć!</font><br><font size="5">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></font></p>'
         };
         transporter.sendMail(mailOptions, function(error, info){
-            if(error){
-                reject(err);
-            }
-            fulfill(info);
                 });
             });
         }
