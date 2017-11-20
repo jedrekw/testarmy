@@ -21,7 +21,7 @@ var EC = protractor.ExpectedConditions;
             browser.driver.wait(EC.presenceOf(dashboard.userAccountButton), 10000);
         });
 
-        it('should login to account', function(){
+        fit('should login to account', function(){
             var source = browser.driver.getPageSource();
             expect(source).toContain("assets/img/logo.svg");
         });
