@@ -30,7 +30,7 @@ exports.config = {
         jasmine.getEnv().addReporter(prettyReporter);
     },
     onComplete: function () {
-        sendMail.sendHTMLMail();
+        this.sendHTMLMail();
     }
 };
 
