@@ -26,12 +26,7 @@ exports.config = {
                 subject: 'Testarmy Raport Testy Automatyczne',
                 html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="5">Cześć!</font><br><br><font size="4">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="https://ci.testuj.pl/job/Testarmy/ws/results/report.html">Otwórz raport</a></font></p>'
             };
-            transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                    return console.log(error);
-                }
-                console.log('Mail sent: ' + info.response);
-                    });
+            transporter.sendMail(mailOptions);
                 });
             }
     };
