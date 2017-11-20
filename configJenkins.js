@@ -11,26 +11,30 @@ exports.config = {
         jasmine.getEnv().addReporter(prettyReporter);
     },
     onComplete: function() {
-    return new Promise(function (fulfill, reject){
-        var transporter = nodemailer.createTransport({
-            host: 'smtp.gmail.com',
-            port: 465,
-            secure: true, // use SSL
-            auth: {
-                user: 'maildoklientow%40gmail.com',
-                pass: 'useme1988'
-            }
-        });
-        var mailOptions = {
-            from: '"Testarmy" <maildoklientow@gmail.com>',
-            to: 'maildoklientow@gmail.com',
-            subject: 'Testarmy Raport Testy Automatyczne',
-            html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="6">Cześć!</font><br><font size="5">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></font></p>'
-        };
-        transporter.sendMail(mailOptions, function(error, info){
-                });
+        return new Promise(function (){
+            var transporter = nodemailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true, // use SSL
+                auth: {
+                    user: 'maildoklientow%40gmail.com',
+                    pass: 'useme1988'
+                }
             });
-        }
+            var mailOptions = {
+                from: '"Testarmy" <maildoklientow@gmail.com>',
+                to: 'maildoklientow@gmail.com',
+                subject: 'Testarmy Raport Testy Automatyczne',
+                html: '<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p><font size="6">Cześć!</font><br><font size="5">Oto wygenerowany automatycznie raport z testów staging.testarmy.com<br><br>Tabela raportowa ze screenshotami oraz logami wykonanych testów:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></font></p>'
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                    return console.log(error);
+                }
+                console.log('Mail sent: ' + info.response);
+                    });
+                });
+            }
     };
 
 
