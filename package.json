@@ -1,6 +1,8 @@
 {
   "name": "testarmy",
-  "dependencies": {},
+  "dependencies": {
+    "nodemailer": "^4.4.0"
+  },
   "devDependencies": {
     "jasmine-given": "^2.6.4",
     "jasmine-node": "^1.14.5",
