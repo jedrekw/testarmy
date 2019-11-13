@@ -1,0 +1,100 @@
+Index: specs/Profile.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- specs/Profile.js	(revision 3f79401bc55a5ae4bce55cfba18001673c8d1fcb)
++++ specs/Profile.js	
+@@ -15,8 +15,8 @@
+             browser.ignoreSynchronization = true;
+             browser.waitForAngular();
+             jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+-            browser.driver.manage().window().setSize(1024, 768);
+-            // browser.driver.manage().window().maximize();
++            // browser.driver.manage().window().setSize(1024, 768);
++            browser.driver.manage().window().maximize();
+             login_page.visitLoginPage();
+             login_page.fillEmail(USER);
+             login_page.fillPassword(PASSWORD);
+@@ -96,19 +96,18 @@
+             expect(profile.certificationSavedLicenseNumberField.getText()).toEqual(("'"+profile.certificationLicenseNumberValue+"'").slice(1,-1));
+         });
+ 
+-        it('- change programming languages in experience tab should succeed', function(){
++        fit('- change programming languages in experience tab should succeed', function(){
+             dashboard.visitProfile();
+             browser.wait(EC.presenceOf(profile.nameField), 10000);
+             profile.visitExperienceAndSkillsTab();
+             browser.wait(EC.presenceOf(profile.professionalDescriptionEditButton), 10000);
+             profile.changeProgrammingLanguages();
+-            browser.driver.sleep(1000);
+             profile.removeProgrammingLanguages();
+-            // profile.inputProgrammingLanguage();
+-            // expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedBox.getText());
+-            // profile.saveProgrammingLanguages();
+-            // var source = driver.getPageSource();
+-            // expect(source).toContain("Profile has been saved");
+-            // expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedField.getText());
++            profile.inputProgrammingLanguage();
++            profile.saveProgrammingLanguages();
++            browser.driver.sleep(1000);
++            var source = driver.getPageSource();
++            expect(source).toContain("Profile has been saved");
++            expect(profile.programmingLanguagesNameValue).toEqual(profile.programmingLanguagesAddedField.getText());
+             });
+     });
+Index: pages/ProfilePage.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pages/ProfilePage.js	(revision 3f79401bc55a5ae4bce55cfba18001673c8d1fcb)
++++ pages/ProfilePage.js	
+@@ -190,20 +190,37 @@
+     // };
+ 
+ 
+-    ProfilePage.prototype.removeProgrammingLanguages = function removeProgrammingLanguages() {
+-        return element(By.css("div.lang-cloud.remove > span")).isPresent().then(function() {
+-            return element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrammingLanguages)
++    ProfilePage.prototype.removeProgrammingLanguages = function removeProgrLanguages() {
++        browser.findElement(By.xpath("//div/span")).then(function (err) {
++            element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrLanguages);
++        }, function (err) {
++            if (err) {
++                console.log(err.name);
++            } else {
++                    promise.rejected();
++            }
+         })
+     };
+ 
+-    // ProfilePage.prototype.inputProgrammingLanguage = function () {
+-    //     settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
+-    //     this.programmingLanguagesAddButton.click();
++        // browser.findElement(By.xpath("//div/span")).then(function(err) {
++        //     if (err) {
++        //                         return true;
++        //                     }
++        //                     else {
++        //                         element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrLanguages);
++        //                     }
++            // return element(By.css("div.lang-cloud.remove > span")).click().then(removeProgrammingLanguages)
++    //     })
+     // };
+-    //
+-    // ProfilePage.prototype.saveProgrammingLanguages = function () {
+-    //     this.programmingLanguagesSaveButton.click();
+-    // };
++
++    ProfilePage.prototype.inputProgrammingLanguage = function () {
++        settings.clearFieldAndSendKeys(this.programmingLanguagesNameField, this.programmingLanguagesNameValue);
++        this.programmingLanguagesAddButton.click();
++    };
++
++    ProfilePage.prototype.saveProgrammingLanguages = function () {
++        this.programmingLanguagesSaveButton.click();
++    };
+ 
+     return ProfilePage;
+ 

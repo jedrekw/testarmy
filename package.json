@@ -5,7 +5,7 @@
   },
   "devDependencies": {
     "jasmine-given": "^2.6.4",
-    "jasmine-node": "^1.14.5",
+    "jasmine-node": "^1.16.2",
     "jasminewd": "^1.1.0",
     "protractor": "^5.1.2",
     "protractor-pretty-html-reporter": "0.0.15",
